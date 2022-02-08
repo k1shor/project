@@ -8,24 +8,24 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const PropertyDetails = (props) => {
-    const [property,setProperty]=useState({})
-    const [error,setError]=useState(false)
-    const [relatedProperty,setRelatedProperty] = useState([])
+    const [property, setProperty] = useState({})
+    const [error, setError] = useState(false)
+    const [relatedProperty, setRelatedProperty] = useState([])
 
 
-    const loadSingleProduct=propertyId=>{
-        propertyDetails(propertyId).then(data=>{
-            if(data.error){
+    const loadSingleProduct = propertyId => {
+        propertyDetails(propertyId).then(data => {
+            if (data.error) {
                 setError(data.error)
             }
-            else{
+            else {
                 setProperty(data)
                 //after fetching single product then fetch related products in same category 
-                listRelated(data._id).then(data=>{
-                    if(data.error){
+                listRelated(data._id).then(data => {
+                    if (data.error) {
                         setError(data.error)
                     }
-                    else{
+                    else {
                         setRelatedProperty(data)
                     }
                 })
@@ -33,42 +33,48 @@ const PropertyDetails = (props) => {
         })
     }
 
-    useEffect(()=>{
-        const propertyId=props.match.params.id
+    useEffect(() => {
+        const propertyId = props.match.params.id
         // console.log(propertyId)
-        // loadSingleProduct(propertyId)
-    },[props])
+        loadSingleProduct(propertyId)
+    }, [props])
 
-    
+
     return (
         <>
             <Nav />
 
-            <ToastContainer position="top-center" theme="colored"/>
-                <div className="card shadow-lg mb-3 mt-4 offset-md-3" style={{maxWidth:'800px'}}>
-                    <div className="row g-0">
-                        <div className="col-md-6 mt-3 mb-3 p-3">
-                            <img src={`http://localhost:5000/${property.property_image}`} className="image-fluid rounded-start" alt={property.property_name}/>
-                        </div>
-                        <div className="col-md-6 mt-4 mb-3">
-                            <div className="card-body">
-                            <h5 className="card-title">{property.property_name}</h5>
-                            <h5 className="card-text">Rs. {property.property_price}</h5>
-                            <p className="card-text  text-dark">{property.property_desc}</p>
-                            <button className="btn btn-success" onClick={<></>}>Add to Cart</button>
-                            </div>
+            <div className='container-fluid my-5 mx-auto'>
+                <div className='row align-items-center'>
+                    <div className='col col-md-7 text-center'>
+                        <img src={`http://localhost:5000/${property.property_image}`} className="image-fluid rounded-start" alt={property.property_name} style={{ 'width': '80%' }} />
+                    </div>
+                    <div className='col col-md-5'>
+                    <h5 className="card-title h1">{property.property_title}</h5>
+                    <h5 className="card-title h3">Location:{property.property_location}</h5>
+                        
+                        <h5 className="card-title">{property.property_name}</h5>
+                        <h5 className="card-text">Price: Rs.{property.property_price}</h5>
+                        <p className="card-text  text-dark">Description:<b>{property.property_desc}</b></p>
+                        <div class='btn-group'>
+                        <button className="btn btn-success" onClick={<></>}>Book Now</button>
+                        <button className="btn btn-primary" onClick={<></>}>Seek Consulation</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {relatedProperty.length>0 && (
-                    <div className="container mt-3 mb-3">
-                        <center><h2 className="mb-2 mt-1">Related Products</h2></center>
-                        <div className="row row-cols-1 row-cols-md-4 g-4">
-                            {relatedProperty.map((product,i)=>(
-                                <div class="col">
+<hr/>
+
+
+            {relatedProperty.length > 0 && (
+                <div className="container my-5 mb-3 text-center">
+                    <h2 className="mb-2 my-1">Related Products</h2>
+                    <div className="row row-cols-1 row-cols-md-3 g-5 mx-auto">
+                        {relatedProperty.slice(0, 4).map((product, i) => (
+                            <div class="col w-25">
                                 <div class="card">
-                                    <img style={{ 'height': '200px' }} src={`http://localhost:5000/${product.property_image}`} class="card-img-top" alt={``} />
+                                    <img style={{ 'height': '150px' }} src={`http://localhost:5000/${product.property_image}`} class="card-img-top" alt={``} />
                                     <div class="card-body">
                                         <h4 class="card-title">{product.property_title}
                                         </h4>
@@ -79,12 +85,12 @@ const PropertyDetails = (props) => {
                                     </div>
                                 </div>
                             </div>
-                                
-                            ))}
 
-                        </div>
+                        ))}
+
                     </div>
-                )}
+                </div>
+            )}
 
 
             <Footer />

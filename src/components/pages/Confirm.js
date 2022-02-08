@@ -11,7 +11,7 @@ const Confirm = ({match}) => {
 
     useEffect(()=>{
         const token = match.params.token
-        fetch(`${API}/user/confirmation/${token}`,{
+        fetch(`${API}/confirmation/${token}`,{
             method:"POST",
             headers:{
                 Accept:"application/json",
@@ -30,7 +30,7 @@ const Confirm = ({match}) => {
             }
         })
         .catch(err=>console.log(err))
-    })
+    },[])
 
 
     // to show error

@@ -69,6 +69,7 @@ const Home = () => {
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     {listingsByPostdate.filter((item) => item.listing_type === "Buy").slice(0, 4).map((listing, i) => (
                         <div class="col">
+                            <Link class="text-decoration-none text-dark" to={`/propertydetails/${listing._id}`}>
                             <div class="card">
                                 <img style={{ 'height': '200px' }} src={`http://localhost:5000/${listing.property_image}`} class="card-img-top" alt={``} />
                                 <div class="card-body">
@@ -81,6 +82,7 @@ const Home = () => {
                                     </h6>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -90,6 +92,7 @@ const Home = () => {
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     {listingsByPostdate.filter((item) => item.listing_type === "Rent").slice(0, 4).map((listing, i) => (
                         <div class="col">
+                            <Link class="text-decoration-none text-dark" to={`/propertydetails/${listing._id}`}>
                             <div class="card">
                                 <img style={{ 'height': '200px' }} src={`http://localhost:5000/${listing.property_image}`} class="card-img-top" alt={``} />
                                 <div class="card-body">
@@ -102,6 +105,7 @@ const Home = () => {
                                     </h6>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -112,7 +116,8 @@ const Home = () => {
                     <div className='container-fluid my-5'>
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             {listingsByPostdate.filter((item) => category._id === item.category).slice(0, 4).map((listing, i) => (
-                                <div class="col">
+                                
+                                <Link class="text-decoration-none text-dark" to={`/propertydetails/${listing._id}`}><div class="col">
                                     <div class="card">
                                         <img style={{ 'height': '200px' }} src={`http://localhost:5000/${listing.property_image}`} class="card-img-top" alt={``} />
                                         <div class="card-body">
@@ -125,7 +130,7 @@ const Home = () => {
                                             </h6>
                                         </div>
                                     </div>
-                                </div>
+                                </div></Link>
                             ))}
                         </div>
                     </div>

@@ -13,7 +13,7 @@ export const showListings = (sortBy) => {
 
 // to fetch product details
 export const propertyDetails=(propertyId)=>{
-    return fetch(`${API}/showProperty/${propertyId}`,{
+    return fetch(`${API}/findProperty/${propertyId}`,{
         method:'GET'
     })
     .then(response=>{
@@ -24,7 +24,7 @@ export const propertyDetails=(propertyId)=>{
 
 //list related
 export const listRelated=(propertyId)=>{
-    return fetch(`${API}/listRelated/${propertyId}`,{
+    return fetch(`${API}/property/related/${propertyId}`,{
         method:'GET'
     })
     .then(response=>{

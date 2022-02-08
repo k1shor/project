@@ -58,7 +58,7 @@ const Nav = ({ history }) => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly">
+                        <ul className="w-100 navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-evenly">
                             <li className="nav-item">
                                 <Link className="nav-link active text-white" aria-current="page" to="/">Home</Link>
                             </li>
