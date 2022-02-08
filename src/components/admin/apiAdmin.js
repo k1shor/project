@@ -32,6 +32,19 @@ export const getCategories=()=>{
     })
 }
 
+
+//to get single category
+export const getCategory=()=>{
+    return fetch(`${API}/findCategory/`,{
+        method:"GET"
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
 //to add property
 export const createproperty=(token,property)=>{
     return fetch(`${API}/postproperty`,{
@@ -52,7 +65,7 @@ export const createproperty=(token,property)=>{
 
 // to show properties list
 export const getproperties=()=>{
-    return fetch(`${API}/showproperties`,{
+    return fetch(`${API}/showproperty`,{
         method:"GET"
     })
     .then(response=>{
@@ -61,4 +74,40 @@ export const getproperties=()=>{
     .catch(err=>{
         console.log(err)
     })
+}
+
+//to show all users
+export const getUsers=(token)=>{
+    return fetch(`${API}/userList`,{
+        method:"GET",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        }
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+//filter product by price and category
+export const getFilteredProperty=(skip, limit, filters ={})=>{
+    let data={limit,skip,filters}
+
+    return fetch(`${API}/list/by/search`,{
+        method:"POST",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(error=>console.log(error))
 }

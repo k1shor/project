@@ -3,61 +3,61 @@ import { useState } from "react"
 import React from 'react'
 import { Link } from "react-router-dom"
 import AdminSidebar from "./AdminSidebar"
-import { getproperties } from "./apiAdmin"
+import { getUsers } from "./apiAdmin"
 import { isAuthenticated } from "../auth"
+import Nav from "../layout/Nav"
+import Footer from "../layout/Footer"
 
 const Allproperty = () => {
-    const [properties, setproperties] = useState([])
+    const [users, setUsers] = useState([])
     const { token } = isAuthenticated()
 
-    const loadproperty = () => {
-        getproperties().then(data => {
+    const loadUser = () => {
+        getUsers(token).then(data => {
             if (data.error) {
                 console.log(data.error)
             }
             else {
-                setproperties(data)
+                setUsers(data)
             }
         })
     }
 
     useEffect(() => {
-        loadproperty()
+        console.log(token)
+        loadUser()
     }, [])
 
     return (
         <>
+        <Nav/>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3">
                         <AdminSidebar />
                     </div>
                     <div className="col-md-8">
-                        <h2 className="text-center">Total {properties.length} properties.</h2>
+                        <h2 className="text-center">Total {users.length} users.</h2>
                         <hr/>
                         <table className="table table-bordered table-secondary">
                             <thead>
                                 <tr>
+                                    <th>S.No.</th>
                                     <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Stock Number</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
-                                    <th>Action</th>
+                                    <th>Email</th>
+                                    <th>User Role</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {properties.map((item,i)=>(
+                                {users.map((user,i)=>(
                                     <tr key={i}>
-                                        <td>{item.property_name}</td>
-                                        <td>{item.property_price}</td>
-                                        <td>{item.countInStock}</td>
-                                        <td>{item.property_description}</td>
-                                        <td><img src={`http://localhost:5000/${item.property_image}`} alt="" className="img-fluid" width="130"/></td>
+                                        <td>{i+1}</td>
+                                        <td>{user.fname} {user.lname}</td>
+                                        <td>{user.email}</td>
                                         <td>
-                                        <Link to='#' className="btn btn-primary">Update</Link>
-                                        <Link to='#' className="btn btn-danger">Delete</Link>
+                                            {user.role?"Admin":"Normal User"}
                                         </td>
+                                        
                                     </tr>
                                 ))}
                             
@@ -66,6 +66,7 @@ const Allproperty = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

@@ -13,7 +13,7 @@ const AdminSidebar = ({ history }) => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="nav-item">
-                        <Link to="/admin/addCategory" className="nav-link active" aria-current="page">
+                        <Link to="/admin/addCategory" className="nav-link text-white" aria-current="page">
 
                             Add Category
                         </Link>
@@ -31,13 +31,19 @@ const AdminSidebar = ({ history }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/admin/allproduct" className="nav-link text-white">
+                        <Link to="/admin/allproperty" className="nav-link text-white">
 
-                            View All
+                            View/Edit Properties
                         </Link>
                     </li>
                     <li>
-                        <Link to="#" className="nav-link text-white">
+                        <Link to="/admin/allcategory" className="nav-link text-white">
+
+                            View/Edit Catagories
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/admin/allusers" className="nav-link text-white">
 
                             View Users
                         </Link>
@@ -52,21 +58,18 @@ const AdminSidebar = ({ history }) => {
                 <hr />
                 <div className="dropdown">
                     <Link to="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="" alt="" width="32" height="32" className="rounded-circle me-2" />
-                        <strong>{fname}</strong>
+                    <i class="bi bi-person-circle"></i>
+                        <strong>&nbsp;&nbsp;{fname}</strong>
                     </Link>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><Link className="dropdown-item" to="#">{email}</Link></li>
-                        <li><Link className="dropdown-item" to="#">Settings</Link></li>
-                        <li><Link className="dropdown-item" to="#">Profile</Link></li>
-                        <li><hr className="dropdown-divider" /></li>
+                        <li className="dropdown-item" to="#">{email}</li>
                         <li>
                             {isAuthenticated() && isAuthenticated().user.role === 1 && (
-                            <><li className="list-unstyled  mt-2"><Link className="text-white text-decoration-none" to="/user/profile">profile</Link></li>
-                                <button className="btn btn-outline-warning mt-2"
+                            
+                                <li className="dropdown-item mt-2"
                                     onClick={() => signout(() => {
                                         history.push('/')
-                                    })}>Signout</button></>
+                                    })}>Signout</li>
                         )}</li>
                     </ul>
                 </div>

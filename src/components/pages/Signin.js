@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Footer from '../layout/Footer'
 import Nav from '../layout/Nav'
 import { Link } from 'react-router-dom'
@@ -29,6 +29,14 @@ const Signin = () => {
             else{
                 keep_logged(data,
                 setValues({...values,redirectTo:true}))
+                if(redirectTo){
+                    if(user && user.role==1){
+                    return <Redirect to='/admin/dashboard'/>
+                }
+                    else {
+                        return <Redirect to='/user/profile'/>
+                    }
+                }
             }
         })
         .catch(error=>console.log(error))
@@ -41,22 +49,24 @@ const Signin = () => {
 
     // redirect if successful signin
     const {user} = isAuthenticated()
-    const redirect =()=>{
-        if(redirectTo){
-            if(user && user.role){
-            return <Redirect to='/admin/dashboard'/>
-        }
-            else {
-                return <Redirect to='/user/profile'/>
-            }
-        }
-    }
+    // const redirect =()=>{
+    //     if(redirectTo){
+    //         if(user && user.role==1){
+    //         return <Redirect to='/admin/dashboard'/>
+    //     }
+    //         else {
+    //             return <Redirect to='/user/profile'/>
+    //         }
+    //     }
+    // }
 
+    
+   
     return (
         <div>
+            {/* {redirect()} */}
             <Nav />
             {showError()}
-            {redirect()}
             <div className="col-md-6 m-auto border border-1 my-3 px-3 shadow-lg rounded-3">
                 <form className="mt-2">
                     <center><img className="mb-4" src="./images/img1.jpg" alt="" width="72" height="57" /></center>

@@ -1,13 +1,15 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './navbar.css'
 import { isAuthenticated } from '../auth'
 import { signout } from '../auth'
+import { withRouter } from 'react-router-dom'
+
 const Nav = ({ history }) => {
     return (
         <>
             <div className="container-fluid">
-                <div className="row navbar-header d-flex align-items-center">
+                <div className="row navbar-header d-flex align-items-center py-2">
                     <div className="col-md-3"><Link className="navbar-brand text-white" to="/">GharJagga.Com</Link></div>
                     <div className="col-md-6">
                         <form className="d-flex">
@@ -16,37 +18,35 @@ const Nav = ({ history }) => {
                         </form>
                     </div>
                     <div className="col-md-3">
-                        <ul className="d-flex list-unstyled justify-content-evenly pt-2">
-                            {isAuthenticated() && isAuthenticated().user.role === 0 && (
-                                <><li className="list-unstyled mt-2"><Link to="/admin/dashboard">dashboard</Link></li>
-                                    <button className="btn btn-outline-warning mt-2"
-                                        onClick={() => signout(() => {
-                                            history.push('/')
-                                        })}>Signout</button></>
-                            )}
+                        <div className="text-center">
                             {isAuthenticated() && isAuthenticated().user.role === 1 && (
-                                <><li className="list-unstyled  mt-2"><Link className="text-white text-decoration-none" to="/user/profile">profile</Link></li>
-                                    <button className="btn btn-outline-warning mt-2"
+                                <><Link to="/admin/dashboard"><button className='btn btn-outline-warning mt-2'> Dashboard</button></Link>
+                                    <Link><button className="btn btn-outline-warning mt-2"
                                         onClick={() => signout(() => {
                                             history.push('/')
-                                        })}>Signout</button></>
+                                        })}>Signout <i className='bi bi-box-arrow-right'></i></button></Link></>
+                            )}
+                            {isAuthenticated() && isAuthenticated().user.role === 0 && (
+                                <><Link to="/user/profile"><button className='btn btn-outline-warning mt-2'> Profile</button></Link>
+                                    <Link><button className="btn btn-outline-warning mt-2"
+                                        onClick={() => signout(() => {
+                                            history.push('/')
+                                        })}>Signout <i className='bi bi-box-arrow-right'></i></button></Link></>
                             )}
                             {!isAuthenticated() && (
                                 <>
-                                    <li className="px-2"><Link class="text-decoration-none" to="/signin">
-                                        <i class="bi bi-box-arrow-in-left text-white fs-3"></i>
-                                    </Link></li>
-                                    <li><Link class="text-decoration-none" to="/signup">
-                                        <i class="bi bi-person-plus text-white fs-3"></i>
-                                    </Link></li>
-
+                                    <div class="btn-group" >
+                                        <Link class="btn btn-warning text-decoration-none" to="/signin">LOGIN&nbsp;&nbsp;
+                                            <i class="bi bi-box-arrow-in-left"></i>
+                                        </Link>
+                                        <Link class="btn btn-warning text-decoration-none" to="/signup">REGISTER&nbsp;&nbsp;
+                                            <i class="bi bi-person-plus"></i>
+                                        </Link>
+                                    </div>
                                 </>
                             )}
 
-                            <li><Link class="text-decoration-none" to="/cart">
-                                <i class="bi bi-cart text-white fs-3"></i>
-                            </Link></li>
-                        </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -58,16 +58,29 @@ const Nav = ({ history }) => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly">
                             <li className="nav-item">
-                                <Link className="nav-link active text-white" aria-current="page" to="#">Land</Link>
+                                <Link className="nav-link active text-white" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="#">Buildings</Link>
+                                <Link className="nav-link  text-white" to="/buy">Buy</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/customerservice">Others</Link>
+                                <Link className="nav-link  text-white" to="/lease">Rent</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link  text-white" to="/">Consultation</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link  text-white" to="/blogs">Blogs</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link  text-white" to="/about">About Us</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link  text-white" to="/contact">Contact Us</Link>
+                            </li>
+                            
 
                         </ul>
 
@@ -78,4 +91,4 @@ const Nav = ({ history }) => {
     )
 }
 
-export default Nav
+export default withRouter(Nav)

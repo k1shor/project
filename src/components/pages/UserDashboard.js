@@ -1,10 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Footer from '../layout/Footer'
 import Nav from '../layout/Nav'
-import UserSidebar from '../User/UserSidebar'
-// import { isAuthenticated } from '.'
-
+import UserSidebar from '../auth/UserSidebar'
 const UserDashboard = () => {
 
     return (

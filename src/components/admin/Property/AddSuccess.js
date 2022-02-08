@@ -1,8 +1,8 @@
 import React from 'react'
-import AdminSidebar from '../admin/AdminSidebar'
-import Footer from '../layout/Footer'
-import Nav from '../layout/Nav'
-const AdminDashboard = () => {
+import AdminSidebar from '../AdminSidebar'
+import Footer from '../../layout/Footer'
+import Nav from '../../layout/Nav'
+const AddSuccess = () => {
   
     return (
         <>
@@ -13,8 +13,7 @@ const AdminDashboard = () => {
                     <AdminSidebar />
                 </div>
                 <div className="col-md-8 mt-5">
-                    <h2>Welcome to Admin Dashboard</h2>
-                    <h4>You can manage Category, Product and orders from here.</h4>
+                    <h4>New Property listed successfully</h4>
                 </div>
             </div>
             </div>
@@ -25,4 +24,4 @@ const AdminDashboard = () => {
 }
 
 
-export default AdminDashboard
+export default AddSuccess

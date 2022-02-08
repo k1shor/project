@@ -54,7 +54,7 @@ const Signup = () => {
             {showSuccess()}
             
 
-            <div className='container-sm w-50  mx-auto my-5 shadow-lg p-5'>
+            <div className='col-md-6 m-auto border border-1 my-3 p-5 shadow-lg rounded-3'>
                 <main className="form-signin">
                     <form>
                         <div className='text-center'>

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { isAuthenticated, signout } from '../auth'
+import { isAuthenticated, signout } from './index'
 
 const UserSidebar = ({ history }) => {
-    const { user: { fname, email } } = isAuthenticated()
+    const { user: {  fname, email } } = isAuthenticated()
     return (
         <>
             <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{ width: "280px" }}>
@@ -41,22 +41,19 @@ const UserSidebar = ({ history }) => {
                 <hr />
                 <div className="dropdown">
                     <Link to="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="" alt="" width="32" height="32" className="rounded-circle me-2" />
-                        <strong>{fname}</strong>
+                    <i class="bi bi-person-circle"></i>
+                        <strong>&nbsp;&nbsp;{fname}</strong>
                     </Link>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><Link className="dropdown-item" to="#">{email}</Link></li>
-                        <li><Link className="dropdown-item" to="#">Settings</Link></li>
-                        <li><Link className="dropdown-item" to="#">Profile</Link></li>
-                        <li><hr className="dropdown-divider" /></li>
+                        <li className="dropdown-item" to="#">{email}</li>
                         <li>
-                            {isAuthenticated() && isAuthenticated().user.role == 0 && (
-                                <><li className="list-unstyled  mt-2"><Link className="text-white text-decoration-none" to="/user/profile">profile</Link></li>
-                                    <button className="btn btn-outline-warning mt-2"
-                                        onClick={() => signout(() => {
-                                            history.push('/')
-                                        })}>Signout</button></>
-                            )}</li>
+                            {isAuthenticated() && isAuthenticated().user.role === 0 && (
+                            
+                                <li className="dropdown-item mt-2"
+                                    onClick={() => signout(() => {
+                                        history.push('/')
+                                    })}>Signout</li>
+                        )}</li>
                     </ul>
                 </div>
             </div>
