@@ -35,6 +35,11 @@ import About from './components/pages/About'
 import House from './components/pages/House'
 import Land from './components/pages/Land'
 import PropertyDetails from './components/pages/PropertyDetails'
+import UAddProperty from './components/user/UAddProperty'
+import ViewMyListing from './components/user/ViewMyListing'
+import BookNow from './components/pages/BookNow'
+import SeekConsultation from './components/pages/SeekConsultation'
+import Homesuccess from './components/pages/Homesuccess'
 
 
 
@@ -44,6 +49,8 @@ const Routes = () => {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/homesuccess" component={Homesuccess} />
+
 
                     <Route exact path="/signup" component={Signup} />
                     <Route exact path="/signin" component={Signin} />
@@ -88,6 +95,10 @@ const Routes = () => {
 
                     {/* user  */}
                     <PrivateRoute exact path="/user/profile" component={UserDashboard} />
+                    <PrivateRoute exact path="/user/property/add" component={UAddProperty}/>
+                    <PrivateRoute exact path="/user/allproduct" component={ViewMyListing}/>
+                    <PrivateRoute exact path="/booknow/:id" component={BookNow}/>
+                    <PrivateRoute exact path="/seekconsultation/:id" component={SeekConsultation}/>
 
 
 

@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { isAuthenticated, signout } from './index'
 
 const UserSidebar = ({ history }) => {
-    const { user: {  fname, email } } = isAuthenticated()
+    const { user: { fname, email } } = isAuthenticated()
     return (
         <>
             <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{ width: "280px" }}>
@@ -13,24 +13,19 @@ const UserSidebar = ({ history }) => {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li>
-                        <Link to="#" className="nav-link text-white">
+                        <Link to="/user/property/add" className="nav-link text-white">
 
                             Add Property for sale
                         </Link>
                     </li>
-                    <li>
-                        <Link to="#" className="nav-link text-white">
 
-                            Add Property for rent
-                        </Link>
-                    </li>
                     <li>
                         <Link to="/user/allproduct" className="nav-link text-white">
 
-                            View all Listings
+                            View My Listings
                         </Link>
                     </li>
-                    
+
                     <li>
                         <Link to="/" className="nav-link text-white">
 
@@ -41,19 +36,19 @@ const UserSidebar = ({ history }) => {
                 <hr />
                 <div className="dropdown">
                     <Link to="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-circle"></i>
+                        <i class="bi bi-person-circle"></i>
                         <strong>&nbsp;&nbsp;{fname}</strong>
                     </Link>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <li className="dropdown-item" to="#">{email}</li>
                         <li>
                             {isAuthenticated() && isAuthenticated().user.role === 0 && (
-                            
+
                                 <li className="dropdown-item mt-2"
                                     onClick={() => signout(() => {
                                         history.push('/')
                                     })}>Signout</li>
-                        )}</li>
+                            )}</li>
                     </ul>
                 </div>
             </div>

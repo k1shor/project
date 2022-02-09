@@ -62,6 +62,23 @@ export const createproperty=(token,property)=>{
         console.log(err)
     })
 }
+//to add booking
+export const createbooking=(token,booking)=>{
+    return fetch(`${API}/postbookings`,{
+        method:"POST",
+        headers:{
+            Accept:'application/json',
+            Authorization:`Bearer ${token}`
+        },
+        body:booking
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
 
 // to show properties list
 export const getproperties=()=>{

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import AdminSidebar from "../AdminSidebar"
-import { getCategories, createproperty } from "../apiAdmin"
-import { isAuthenticated } from "../../auth"
-import Nav from "../../layout/Nav"
-import Footer from "../../layout/Footer"
+import UserSidebar from "../auth/UserSidebar"
+import { getCategories, createproperty } from "../admin/apiAdmin"
+import { isAuthenticated } from "../auth"
+import Nav from "../layout/Nav"
+import Footer from "../layout/Footer"
 import { Redirect } from "react-router-dom"
 
-const AddProperty = () => {
+const UAddProperty = () => {
     const { token } = isAuthenticated()
     const [redirect, setRedirect] = useState(false)
 
@@ -21,12 +21,12 @@ const AddProperty = () => {
         listing_type:'',
         categories: [],
         category: '',
+        added_by:'{token.email}',
         error: '',
         success: false,
-        added_by:token.email,
         formData: ''
     })
-    const { property_title, property_location, property_availability, property_price, property_desc, property_image, listing_type, categories, category, error, success, formData } = values
+    const { property_title, property_location, property_availability, property_price, property_desc, property_image, listing_type, categories, category, added_by, error, success,  formData } = values
 
     //load categories and set form data
     const init = () => {
@@ -43,6 +43,7 @@ const AddProperty = () => {
     //to send formdata
     useEffect(() => {
         init()
+
     }, [])
 
     const handleChange=name=>event=>{
@@ -98,7 +99,7 @@ const AddProperty = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3">
-                        <AdminSidebar />
+                        <UserSidebar />
                     </div>
                     <div className="col-md-6">
                         <main className="form-signin">
@@ -107,13 +108,15 @@ const AddProperty = () => {
                                 {showError()}
                                 {showSuccess()}
                                 {redirectTo()}
+                                    <input type="hidden"  id="title2" onLoad={handleChange('added_by')} value={added_by} />
+                                    <label htmlFor="title">Owner</label>
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="title" placeholder="" onChange={handleChange('property_title')} value={property_title} />
+                                    <input type="text" className="form-control" id="title" placeholder="title" onChange={handleChange('property_title')} value={property_title} />
                                     <label htmlFor="title">Title</label>
                                 </div>
 
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="location" placeholder="" onChange={handleChange('property_location')} value={property_location} />
+                                    <input type="text" className="form-control" id="location" placeholder="location" onChange={handleChange('property_location')} value={property_location} />
                                     <label htmlFor="location">Location</label>
                                 </div>
                                 
@@ -155,4 +158,4 @@ const AddProperty = () => {
     )
 }
 
-export default AddProperty
+export default UAddProperty

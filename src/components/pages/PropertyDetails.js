@@ -57,8 +57,8 @@ const PropertyDetails = (props) => {
                         <h5 className="card-text">Price: Rs.{property.property_price}</h5>
                         <p className="card-text  text-dark">Description:<b>{property.property_desc}</b></p>
                         <div class='btn-group'>
-                        <button className="btn btn-success" onClick={<></>}>Book Now</button>
-                        <button className="btn btn-primary" onClick={<></>}>Seek Consulation</button>
+                        <a className="btn btn-success" href={`/booknow/${props.match.params.id}`}>Book Now</a>
+                        <a className="btn btn-success" href={`/seekconsultation/${props.match.params.id}`}>Seek Consulation</a>
                         </div>
                     </div>
                 </div>

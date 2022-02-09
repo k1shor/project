@@ -6,7 +6,7 @@ import { showListings } from '../uiapi'
 import { getCategories } from '../admin/apiAdmin'
 import { Link } from 'react-router-dom'
 
-const Home = () => {
+const Homesuccess = () => {
     const [listingsByPostdate, setListingByPostdate] = useState([])
     const [categories, setCategories] = useState([])
 
@@ -145,4 +145,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Homesuccess

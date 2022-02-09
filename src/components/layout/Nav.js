@@ -9,13 +9,10 @@ const Nav = ({ history }) => {
     return (
         <>
             <div className="container-fluid">
-                <div className="row navbar-header d-flex align-items-center py-2">
-                    <div className="col-md-3"><Link className="navbar-brand text-white" to="/">GharJagga.Com</Link></div>
+                <div className="row navbar-header d-flex align-items-center py-2 custom-nav">
+                    <div className="col-md-3"><Link className="navbar-brand text-white custom-link" to="/">GharJagga.Com</Link></div>
                     <div className="col-md-6">
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-warning" type="submit">Search</button>
-                        </form>
+                        
                     </div>
                     <div className="col-md-3">
                         <div className="text-center">
@@ -51,7 +48,7 @@ const Nav = ({ history }) => {
 
                 </div>
             </div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light nav-sub">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light nav-sub custom-nav2">
                 <div className="container-fluid">
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,25 +57,25 @@ const Nav = ({ history }) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="w-100 navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-evenly">
                             <li className="nav-item">
-                                <Link className="nav-link active text-white" aria-current="page" to="/">Home</Link>
+                                <Link className="nav-link active text-white custom-link custom-link" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/buy">Buy</Link>
+                                <Link className="nav-link  text-white custom-link" to="/buy">Buy</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/lease">Rent</Link>
+                                <Link className="nav-link  text-white custom-link" to="/lease">Rent</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/">Consultation</Link>
+                                <Link className="nav-link  text-white custom-link" to="/">Consultation</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/blogs">Blogs</Link>
+                                <Link className="nav-link  text-white custom-link" to="/blogs">Blogs</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/about">About Us</Link>
+                                <Link className="nav-link  text-white custom-link" to="/about">About Us</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white" to="/contact">Contact Us</Link>
+                                <Link className="nav-link  text-white custom-link" to="/contact">Contact Us</Link>
                             </li>
                             
 

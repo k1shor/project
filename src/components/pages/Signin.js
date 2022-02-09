@@ -27,16 +27,8 @@ const Signin = () => {
                 setValues({...values,error:data.error})
             }
             else{
-                keep_logged(data,
-                setValues({...values,redirectTo:true}))
-                if(redirectTo){
-                    if(user && user.role==1){
-                    return <Redirect to='/admin/dashboard'/>
-                }
-                    else {
-                        return <Redirect to='/user/profile'/>
-                    }
-                }
+                keep_logged(data,redirect)
+                // redirect()
             }
         })
         .catch(error=>console.log(error))
@@ -49,22 +41,23 @@ const Signin = () => {
 
     // redirect if successful signin
     const {user} = isAuthenticated()
-    // const redirect =()=>{
-    //     if(redirectTo){
-    //         if(user && user.role==1){
-    //         return <Redirect to='/admin/dashboard'/>
-    //     }
-    //         else {
-    //             return <Redirect to='/user/profile'/>
-    //         }
-    //     }
-    // }
+    const redirect =()=>{
+        if(redirectTo){
+            if(user && user.role==1){
+            return <Redirect to='/admin/dashboard'/>
+        }
+            else {
+                return <Redirect to='/user/profile'/>
+            }
+        }
+    }
+    
 
     
    
     return (
         <div>
-            {/* {redirect()} */}
+            {redirect()}
             <Nav />
             {showError()}
             <div className="col-md-6 m-auto border border-1 my-3 px-3 shadow-lg rounded-3">
@@ -88,7 +81,7 @@ const Signin = () => {
                                 <input type="checkbox" value="remember-me" /> Remember me. Do not have an account ?  <Link to="/signup">Sign Up.</Link>
                             </label>
                         </div>
-                        <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={submitForm}>Sign In</button>
+                        <button className="w-100 btn btn-lg btn-primary" onClick={submitForm}>Sign In</button>
                         <Link to="/forgotpassword">Forgot Password</Link>
                         <p className="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
                     </center>

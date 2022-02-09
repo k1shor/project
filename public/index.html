@@ -28,9 +28,47 @@
 
 
     <style>
+      body{
+font-family: sans-serif;
+text-transform: uppercase;
+/* color: blue !important; */
+}
       .background{
         background-image: linear-gradient( 90.2deg, rgba(212,215,218,0.79) 2.9%, rgba(144,166,187,1) 22.5%, rgba(5,45,90,0.58) 53.6%, rgba(127,39,39,0.71) 83.1%, rgba(202,75,17,1) 98.9% );
       }
+
+      .card{
+        overflow: hidden;
+
+      }
+      img{
+        transition: 2s;
+      }
+      .card img:hover{
+        transform: scale(1.2);
+        
+      }
+      .custom-link{
+        color: blue !important;
+        font-size: 20px;
+      }
+      .custom-link:hover{
+        font-weight: bold;
+        color: blueviolet !important;
+      }
+      .custom-nav2, .custom-nav{
+        background-image: linear-gradient( 110.1deg, rgba(239,118,185,1) 3.6%, rgba(140,221,248,1) 81.5% );
+position: sticky;
+top: 0;
+z-index: 2;
+      }
+      .custom-nav2{
+        height: 35px;
+        background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(177,231,251,1) 0.3%, rgba(251,177,216,1) 90.1% );
+
+      }
+      
+      
     </style>
 </head>
 
