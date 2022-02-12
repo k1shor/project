@@ -7,15 +7,17 @@ const AddSuccess = () => {
     return (
         <>
             <Nav />
-            <div className='container-fluid'>
-            <div className="row mx-0" style={{ "minHeight": "70vh" }}>
-                <div className="col-md-3 h-100">
-                    <AdminSidebar />
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-3">
+                        <AdminSidebar />
+                    </div>
+                    <div className="col-md-8">
+                        <div className="text-center text-warning mt-5">
+                            <h2>New Listing added successfully</h2>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-md-8 mt-5">
-                    <h4>New Property listed successfully</h4>
-                </div>
-            </div>
             </div>
             <Footer />
 

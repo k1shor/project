@@ -50,21 +50,29 @@ const PropertyDetails = (props) => {
                         <img src={`http://localhost:5000/${property.property_image}`} className="image-fluid rounded-start" alt={property.property_name} style={{ 'width': '80%' }} />
                     </div>
                     <div className='col col-md-5'>
-                    <h5 className="card-title h1">{property.property_title}</h5>
-                    <h5 className="card-title h3">Location:{property.property_location}</h5>
-                        
+                        <h5 className="card-title h1">{property.property_title}</h5>
+                        <h5 className="card-title h3">Location:{property.property_location}</h5>
+
                         <h5 className="card-title">{property.property_name}</h5>
                         <h5 className="card-text">Price: Rs.{property.property_price}</h5>
                         <p className="card-text  text-dark">Description:<b>{property.property_desc}</b></p>
-                        <div class='btn-group'>
-                        <a className="btn btn-success" href={`/booknow/${props.match.params.id}`}>Book Now</a>
-                        <a className="btn btn-success" href={`/seekconsultation/${props.match.params.id}`}>Seek Consulation</a>
+                        <h6 className='card-title'>Availablity:
+                            {property.property_availability ? 
+                            "YES" 
+                            : "NO"}
+                        </h6>
+
+                        {property.property_availability ? 
+                            <div class='btn-group'>
+                            <a className="btn btn-success" href={`/booknow/${props.match.params.id}`}>Book Now</a>
+                            <a className="btn btn-success" href={`/seekconsultation/${props.match.params.id}`}>Seek Consulation</a>
                         </div>
+                            : "This listing is not available at the moment."}
                     </div>
                 </div>
             </div>
 
-<hr/>
+            <hr />
 
 
             {relatedProperty.length > 0 && (

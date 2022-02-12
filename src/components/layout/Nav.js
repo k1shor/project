@@ -9,26 +9,25 @@ const Nav = ({ history }) => {
     return (
         <>
             <div className="container-fluid">
-                <div className="row navbar-header d-flex align-items-center py-2 custom-nav">
-                    <div className="col-md-3"><Link className="navbar-brand text-white custom-link" to="/">GharJagga.Com</Link></div>
+                <div className="row navbar-header d-flex align-items-center py-2 bg-info fw-bold">
+                    <div className="col-md-3"><Link className="navbar-brand text-white custom-link fs-3" to="/"><img className = "bx-flashing-hover" src="/logo.png" height="50px" ></img>REALSTATENepal.Com</Link></div>
                     <div className="col-md-6">
-                        
+
                     </div>
                     <div className="col-md-3">
                         <div className="text-center">
                             {isAuthenticated() && isAuthenticated().user.role === 1 && (
                                 <><Link to="/admin/dashboard"><button className='btn btn-outline-warning mt-2'> Dashboard</button></Link>
-                                    <Link><button className="btn btn-outline-warning mt-2"
+                                    <button className="btn btn-outline-warning mt-2"
                                         onClick={() => signout(() => {
                                             history.push('/')
-                                        })}>Signout <i className='bi bi-box-arrow-right'></i></button></Link></>
+                                        })}>Signout <i className='bi bi-box-arrow-right'></i></button></>
                             )}
                             {isAuthenticated() && isAuthenticated().user.role === 0 && (
                                 <><Link to="/user/profile"><button className='btn btn-outline-warning mt-2'> Profile</button></Link>
-                                    <Link><button className="btn btn-outline-warning mt-2"
-                                        onClick={() => signout(() => {
-                                            history.push('/')
-                                        })}>Signout <i className='bi bi-box-arrow-right'></i></button></Link></>
+                                    <button className="btn btn-outline-warning mt-2" onClick={() => signout(() => {
+                                        history.push('/')
+                                    })}>Signout<i className='bi bi-box-arrow-right'></i></button></>
                             )}
                             {!isAuthenticated() && (
                                 <>
@@ -66,7 +65,10 @@ const Nav = ({ history }) => {
                                 <Link className="nav-link  text-white custom-link" to="/lease">Rent</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link  text-white custom-link" to="/">Consultation</Link>
+                                <Link className="nav-link  text-white custom-link" to="/BUILDINGS">Building</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link  text-white custom-link" to="/LANDS">Land</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link  text-white custom-link" to="/blogs">Blogs</Link>
@@ -77,7 +79,7 @@ const Nav = ({ history }) => {
                             <li className="nav-item">
                                 <Link className="nav-link  text-white custom-link" to="/contact">Contact Us</Link>
                             </li>
-                            
+
 
                         </ul>
 

@@ -17,16 +17,16 @@ const UAddProperty = () => {
         property_availability: true,
         property_price: '',
         property_desc: '',
-        property_image:'',
-        listing_type:'',
+        property_image: '',
+        listing_type: 'RENT',
         categories: [],
-        category: '',
-        added_by:'{token.email}',
+        category: 'Land',
+        added_by: '',
         error: '',
         success: false,
         formData: ''
     })
-    const { property_title, property_location, property_availability, property_price, property_desc, property_image, listing_type, categories, category, added_by, error, success,  formData } = values
+    const { property_title, property_location, property_availability, property_price, property_desc, property_image, listing_type, categories, category, added_by, error, success, formData } = values
 
     //load categories and set form data
     const init = () => {
@@ -46,30 +46,30 @@ const UAddProperty = () => {
 
     }, [])
 
-    const handleChange=name=>event=>{
-        const value=name==='property_image'? event.target.files[0]:event.target.value
+    const handleChange = name => event => {
+        const value = name === 'property_image' ? event.target.files[0] : event.target.value
         formData.set(name, value)
         console.log(value)
-        setValues({...values,[name]:value})
+        setValues({ ...values, [name]: value })
     }
 
-    const clickSubmit=event=>{
+    const clickSubmit = event => {
         event.preventDefault()
+        // formData.set('added_by', localStorage.getItem('jwt').user.email)
+        setValues({ ...values, error: '' })
+        createproperty(token, formData)
+            .then(data => {
+                if (data.error) {
+                    setValues({ ...values, error: data.error })
+                }
+                else {
+                    setValues({ ...values, property_title: '', property_location: '', property_availability: true, property_price: '', property_desc: '', property_image: '', success: true, error: '' })
+                    { document.getElementById('img_file').value = null; }
+                    setRedirect(true)
 
-        setValues({...values,error:''})
-        createproperty(token,formData)
-        .then(data=>{
-            if(data.error){
-                setValues({...values,error:data.error})
-            }
-            else{
-                setValues({...values,property_title:'',property_location:'',property_availability:true,property_price:'',property_desc:'',property_image:'',success:true,error:''})
-                {document.getElementById('img_file').value = null;}
-                setRedirect(true)
 
-
-            }
-        })
+                }
+            })
     }
 
     //to show error msg
@@ -78,24 +78,24 @@ const UAddProperty = () => {
     )
 
     //to show success msg
-    const showSuccess=()=>(
-        <div className="alert alert-success" style={{display:success?'':'none'}}>New property Added</div>
+    const showSuccess = () => (
+        <div className="alert alert-success" style={{ display: success ? '' : 'none' }}>New property Added</div>
     )
 
     // to redirect if successfully updated
     const redirectTo = () => {
         if (redirect) {
 
-            return <Redirect to={`/admin/dashboard/addSuccess`} />
+            return <Redirect to={`/user/profile/addSuccess`} />
 
         }
     }
-        
+
 
 
     return (
         <>
-        <Nav/>
+            <Nav />
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3">
@@ -108,8 +108,8 @@ const UAddProperty = () => {
                                 {showError()}
                                 {showSuccess()}
                                 {redirectTo()}
-                                    <input type="hidden"  id="title2" onLoad={handleChange('added_by')} value={added_by} />
-                                    <label htmlFor="title">Owner</label>
+                                
+                                <label htmlFor="title">Owner</label>
                                 <div className="form-floating mb-3">
                                     <input type="text" className="form-control" id="title" placeholder="title" onChange={handleChange('property_title')} value={property_title} />
                                     <label htmlFor="title">Title</label>
@@ -119,7 +119,7 @@ const UAddProperty = () => {
                                     <input type="text" className="form-control" id="location" placeholder="location" onChange={handleChange('property_location')} value={property_location} />
                                     <label htmlFor="location">Location</label>
                                 </div>
-                                
+
                                 <div className="form-floating mb-3">
                                     <input type="number" className="form-control" id="price" placeholder="Stock" onChange={handleChange('property_price')} value={property_price} />
                                     <label htmlFor="price">Price</label>
@@ -130,22 +130,35 @@ const UAddProperty = () => {
                                     <label htmlFor="desc">Description</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="listing_type" placeholder=" " onChange={handleChange('listing_type')} value={listing_type} />
-                                    <label htmlFor="listing_type">Listing Type</label>
+                                    <select className="form-control" onChange={handleChange('listing_type')} id="listing_type" >
+                                        <option></option>
+                                        <option value="RENT">RENT</option>
+                                        <option value="SALE">SALE</option>
+                                    </select>
+                                    <label htmlFor="listying_type">Listing Type</label>
+
                                 </div>
 
                                 <div className="form-floating mb-3">
                                     <input type="file" className="form-control" id="img_file" onChange={handleChange('property_image')} accept="image/*" />
                                     <label htmlFor="img_file">Image</label>
                                 </div>
+                                
 
-                                <div className="mb-3">
-                                    <label htmlFor="category">Category</label>
+                                <div className="form-floating mb-3">
                                     <select className="form-control" onChange={handleChange('category')} >
                                         <option></option>
-                                        {categories && categories.map((c,i)=>(<option key={i} value={c._id}>{c.category_name}</option>))}
-                                        </select>
-                                        </div>
+                                        {categories && categories.map((c, i) => (<option key={i} value={c._id}>{c.category_name}</option>))}
+                                    </select>
+                                    <label htmlFor="category">Category</label>
+
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" onClick={handleChange('added_by')} value={JSON.parse(localStorage.getItem('jwt')).user.email}/>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        I accept the terms and conditions
+                                    </label>
+                                </div>
 
                                 <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={clickSubmit}>ADD property</button>
                             </form>
@@ -153,7 +166,7 @@ const UAddProperty = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

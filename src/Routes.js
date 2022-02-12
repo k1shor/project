@@ -27,6 +27,7 @@ import AllPropertyUpdateSuccess from './components/admin/Property/AllPropertyUpd
 import AllPropertyDeleteSuccess from './components/admin/Property/AllPropertyDeleteSuccess'
 import DeleteProperty from './components/admin/Property/DeleteProperty'
 import EditProperty from './components/admin/Property/EditProperty'
+import Recent from './components/pages/Recent'
 import Buy from './components/pages/Buy'
 import Rent from './components/pages/Rent'
 import Blogs from './components/pages/Blogs'
@@ -36,10 +37,25 @@ import House from './components/pages/House'
 import Land from './components/pages/Land'
 import PropertyDetails from './components/pages/PropertyDetails'
 import UAddProperty from './components/user/UAddProperty'
-import ViewMyListing from './components/user/ViewMyListing'
 import BookNow from './components/pages/BookNow'
 import SeekConsultation from './components/pages/SeekConsultation'
 import Homesuccess from './components/pages/Homesuccess'
+
+import UserDashboardAddSuccess from './components/user/UserDashboardAddSuccess'
+import UserDashboardUpdateSuccess from './components/user/UserDashboardUpdateSuccess'
+import UserDashboardDeleteSuccess from './components/user/UserDashboardDeleteSuccess'
+
+import MyListings from './components/user/MyListings'
+import MyBookings from './components/user/MyBookings'
+
+import UEditProperty from './components/user/UEditProperty'
+import UDeleteProperty from './components/user/UDeleteProperty'
+
+import BookingSuccess from './components/pages/BookingSuccess'
+import DeleteBooking from './components/user/DeleteBooking'
+import UserBookingDeleteSuccess from './components/user/UserBookingDeleteSuccess'
+import EditBooking from './components/user/EditBooking'
+import ViewBooking from './components/user/ViewBooking'
 
 
 
@@ -57,16 +73,19 @@ const Routes = () => {
                     <Route exact path="/email/confirmation/:token" component={Confirm} />
                     <Route exact path="/forgotpassword" component={ForgetPassword} />
                     <Route exact path="/user/resetpassword/:token" component={ResetPassword} />
+                    <Route exact path="/recent" component={Recent}/>
                     <Route exact path="/buy" component={Buy}/>
                     <Route exact path="/lease" component={Rent}/>
-                    <Route exact path="/house" component={House}/>
-                    <Route exact path="/land" component={Land}/>
+                    <Route exact path="/BUILDINGS" component={House}/>
+                    <Route exact path="/bookingdone" component={BookingSuccess}/>
+                    <Route exact path="/LANDS" component={Land}/>
 
                     <Route exact path="/propertydetails/:id" component={PropertyDetails}/>
 
                     <Route exact path="/blogs" component={Blogs}/>
                     <Route exact path="/contact" component={Contact}/>
                     <Route exact path="/about" component={About}/>
+
                     
                     
                     
@@ -95,12 +114,21 @@ const Routes = () => {
 
                     {/* user  */}
                     <PrivateRoute exact path="/user/profile" component={UserDashboard} />
+                    <PrivateRoute exact path="/user/profile/addsuccess" component={UserDashboardAddSuccess} />
                     <PrivateRoute exact path="/user/property/add" component={UAddProperty}/>
-                    <PrivateRoute exact path="/user/allproduct" component={ViewMyListing}/>
                     <PrivateRoute exact path="/booknow/:id" component={BookNow}/>
                     <PrivateRoute exact path="/seekconsultation/:id" component={SeekConsultation}/>
+                    <PrivateRoute exact path="/user/mylistings" component={MyListings}/>
+                    <PrivateRoute exact path="/user/mybookings" component={MyBookings}/>
 
-
+                    <PrivateRoute exact path="/user/property/update/:token" component={UEditProperty}/>
+                    <PrivateRoute exact path="/user/property/updateSuccess" component={UserDashboardUpdateSuccess}/>
+                    <PrivateRoute exact path="/user/property/delete/:token" component={UDeleteProperty}/>
+                    <PrivateRoute exact path="/user/property/deleteSuccess" component={UserDashboardDeleteSuccess}/>
+                    <PrivateRoute exact path="/user/booking/delete/:id" component={DeleteBooking}/>
+                    <PrivateRoute exact path="/user/booking/deleteSuccess" component={UserBookingDeleteSuccess}/>
+                    <PrivateRoute exact path="/user/booking/update/:id" component={EditBooking}/>
+                    <PrivateRoute exact path="/user/booking/details/:id" component={ViewBooking}/>
 
 
                 </Switch>

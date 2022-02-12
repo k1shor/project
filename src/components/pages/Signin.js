@@ -18,20 +18,20 @@ const Signin = () => {
         setValues({...values,error:false,[name]:event.target.value})
     }
 
-    const submitForm = event => {
-        event.preventDefault()
+    const submitForm=event=>{
+        event.preventDefault();
         setValues({...values,error:false})
-        signin({email, password})
+        signin({email,password})
         .then(data=>{
             if(data.error){
                 setValues({...values,error:data.error})
             }
             else{
-                keep_logged(data,redirect)
-                // redirect()
+                keep_logged(data,()=>{
+                    setValues({...values,redirectTo:true})
+                })
             }
         })
-        .catch(error=>console.log(error))
     }
 
     // to show error
@@ -62,7 +62,7 @@ const Signin = () => {
             {showError()}
             <div className="col-md-6 m-auto border border-1 my-3 px-3 shadow-lg rounded-3">
                 <form className="mt-2">
-                    <center><img className="mb-4" src="./images/img1.jpg" alt="" width="72" height="57" /></center>
+                    <center><img className="mb-4" src="./logo.png" alt="" width="72" height="72" /></center>
                     <h1 className="h3 mb-3 fw-normal">Sign In</h1>
 
 
@@ -76,13 +76,14 @@ const Signin = () => {
                     </div>
                     
                     <center>
-                        <div className="checkbox mb-3">
+                        <div className="checkbox mb-3 text-start">
                             <label>
-                                <input type="checkbox" value="remember-me" /> Remember me. Do not have an account ?  <Link to="/signup">Sign Up.</Link>
+                                <input type="checkbox" value="remember-me" /> Remember me.
                             </label>
                         </div>
                         <button className="w-100 btn btn-lg btn-primary" onClick={submitForm}>Sign In</button>
-                        <Link to="/forgotpassword">Forgot Password</Link>
+                        <Link to="/forgotpassword">Forgot Password</Link><br/>
+                        Do not have an account ?  <Link to="/signup">Sign Up.</Link>
                         <p className="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
                     </center>
                 </form>

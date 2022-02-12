@@ -58,7 +58,7 @@ const Signup = () => {
                 <main className="form-signin">
                     <form>
                         <div className='text-center'>
-                            <img className="mb-4" src="logo192.png" alt="" width="72" height="72" />
+                            <img className="mb-4" src="logo.png" alt="" width="72" height="72" />
                         </div>
                         <h1 className="h3 mb-3 fw-normal">Register</h1>
 

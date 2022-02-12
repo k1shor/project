@@ -20,16 +20,23 @@ const UserSidebar = ({ history }) => {
                     </li>
 
                     <li>
-                        <Link to="/user/allproduct" className="nav-link text-white">
+                        <Link to="/user/mylistings" className="nav-link text-white">
 
                             View My Listings
                         </Link>
                     </li>
 
                     <li>
+                        <Link to="/user/mybookings" className="nav-link text-white">
+
+                            View My Bookings
+                        </Link>
+                    </li>
+
+                    <li>
                         <Link to="/" className="nav-link text-white">
 
-                            Find Property
+                            Goto Homepage
                         </Link>
                     </li>
                 </ul>

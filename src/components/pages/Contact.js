@@ -8,10 +8,10 @@ const Contact = () => {
         <div className="container col-xl-10 col-xxl-8 px-4 py-5 mx-auto">
             <div className="row align-items-center g-lg-5 py-5">
                 <div className="col-lg-7 text-center text-lg-start">
-                    <h1 className="display-4 fw-bold lh-1 mb-3">Ghar Jagga Pvt. Ltd. </h1>
+                    <h1 className="display-4 fw-bold lh-1 mb-3">Real State Nepal Pvt. Ltd. </h1>
                     <p className="col-lg-10 fs-4">Kathmandu, Nepal.<br/>
-                        Phone No.: +977-9851012345, <br/>Email: info@gharjagga.com <br/>
-                            website: www.gharjagga.com</p>
+                        Phone No.: +977-9851012345, <br/>Email: info@realstatenepal.com <br/>
+                            website: www.realstatenepal.com</p>
                         </div>
                         <div className="col-md-10 mx-auto col-lg-5">
                             <form className="p-4 p-md-5 border rounded-3 bg-light">

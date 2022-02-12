@@ -6,7 +6,7 @@ const Footer = () => {
         <>
 
             <footer class="py-2 mt-4">
-                <p class="text-center text-muted">&copy; 2021 GharJagga Company, Inc</p>
+                <p class="text-center text-muted">&copy; 2022 REALSTATENepal Pvt. Ltd.</p>
             </footer>
 
         </>

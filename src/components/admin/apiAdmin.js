@@ -33,6 +33,7 @@ export const getCategories=()=>{
 }
 
 
+
 //to get single category
 export const getCategory=()=>{
     return fetch(`${API}/findCategory/`,{
@@ -68,9 +69,10 @@ export const createbooking=(token,booking)=>{
         method:"POST",
         headers:{
             Accept:'application/json',
+            "Content-Type":"application/json",
             Authorization:`Bearer ${token}`
         },
-        body:booking
+        body:JSON.stringify(booking)
     })
     .then(response=>{
         return response.json()
@@ -109,6 +111,44 @@ export const getUsers=(token)=>{
     .catch(err=>{
         console.log(err)
     })
+}
+
+//to get all bookings
+export const getBookings=(token)=>{
+    return fetch(`${API}/bookinglist`,{
+        method:"GET",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        }
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+//to get individual bookings
+export const getBooking=(user,token)=>{
+    return fetch(`${API}/bookingdetails/${token}`, {
+        method: "GET",
+        headers:{
+            Authorization:`Bearer ${user}`
+        }
+    })
+        .then(data => {
+            if (data.error) {
+                console.log(data.error)
+            }
+            else {
+                return data
+                // console.log(data)
+            }
+        })
+        .catch(err => console.log(err))
 }
 
 //filter product by price and category
