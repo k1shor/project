@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../layout/Footer'
 import Nav from '../layout/Nav'
 import UserSidebar from '../auth/UserSidebar'
-const UserDashboardDeleteSuccess = () => {
+const ConsultationDeleteSuccess = () => {
 
     return (
         <>
@@ -13,7 +13,7 @@ const UserDashboardDeleteSuccess = () => {
                         <UserSidebar />
                     </div>
                     <div className="col-md-8 mt-5 text-warning">
-                        <h4>Booking Cancelled Successfully</h4>
+                        <h4>Consultation Cancelled Successfully</h4>
                     </div>
                 </div>
                 </div>
@@ -23,4 +23,4 @@ const UserDashboardDeleteSuccess = () => {
 }
 
 
-export default UserDashboardDeleteSuccess
+export default ConsultationDeleteSuccess

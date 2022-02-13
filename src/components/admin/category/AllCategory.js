@@ -37,7 +37,7 @@ const Allcategory = (msg) => {
                     </div>
                     <div className="col-md-8">
                         {/* <h2></h2> */}
-                        <h2 className="text-center">Total {categories.length} categories.</h2>
+                        <h2 className="col-md-8 mt-5 h2">Total {categories.length} categories.</h2>
                         <hr/>
                         <table className="table table-bordered table-secondary text-center">
                             <thead>

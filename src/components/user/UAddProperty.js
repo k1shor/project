@@ -101,10 +101,11 @@ const UAddProperty = () => {
                     <div className="col-md-3">
                         <UserSidebar />
                     </div>
-                    <div className="col-md-6">
-                        <main className="form-signin">
+                    <div className="col-md-9 mt-5">
+                        <main className="form-signin w-75 mx-auto">
                             <form>
-                                <h1 className="h3 mb-3 fw-normal">Add property Form</h1>
+                                <h1 className="h2 text-center text-info">Add property Form</h1>
+                                <hr/>
                                 {showError()}
                                 {showSuccess()}
                                 {redirectTo()}

@@ -54,10 +54,17 @@ import UDeleteProperty from './components/user/UDeleteProperty'
 import BookingSuccess from './components/pages/BookingSuccess'
 import DeleteBooking from './components/user/DeleteBooking'
 import UserBookingDeleteSuccess from './components/user/UserBookingDeleteSuccess'
-import EditBooking from './components/user/EditBooking'
 import ViewBooking from './components/user/ViewBooking'
-
-
+import MyConsultations from './components/user/MyConsultations'
+import ViewConsultations from './components/user/ViewConsultation'
+import DeleteConsultation from './components/user/DeleteConsultation'
+import ConsultationDeleteSuccess from './components/user/DeleteConsultationSuccess'
+import Contracts from './components/admin/Contracts'
+import Contract from './components/admin/Contract'
+import ContractTerminate from './components/admin/ContractTerminate'
+import ContractsTerminatedSuccess from './components/admin/ContractsTerminatedSuccess'
+import Consult from './components/pages/Consult'
+import House2 from './components/pages/House2'
 
 const Routes = () => {
     return (
@@ -77,6 +84,8 @@ const Routes = () => {
                     <Route exact path="/buy" component={Buy}/>
                     <Route exact path="/lease" component={Rent}/>
                     <Route exact path="/BUILDINGS" component={House}/>
+                    <Route exact path="/BUILDINGS2" component={House2}/>
+
                     <Route exact path="/bookingdone" component={BookingSuccess}/>
                     <Route exact path="/LANDS" component={Land}/>
 
@@ -111,6 +120,10 @@ const Routes = () => {
                     <AdminRoute exact path="/admin/property/update/:token" component={EditProperty}/>
                     <AdminRoute exact path="/admin/property/delete/:token" component={DeleteProperty}/>
 
+                    <AdminRoute exact path="/admin/contracts" component={Contracts}/>
+                    <AdminRoute exact path="/admin/contract/view/:id" component={Contract}/>
+                    <AdminRoute exact path="/admin/contract/delete/:id" component={ContractTerminate}/>
+                    <AdminRoute exact path="/admin/contract/terminated" component={ContractsTerminatedSuccess}/>
 
                     {/* user  */}
                     <PrivateRoute exact path="/user/profile" component={UserDashboard} />
@@ -120,6 +133,7 @@ const Routes = () => {
                     <PrivateRoute exact path="/seekconsultation/:id" component={SeekConsultation}/>
                     <PrivateRoute exact path="/user/mylistings" component={MyListings}/>
                     <PrivateRoute exact path="/user/mybookings" component={MyBookings}/>
+                    <PrivateRoute exact path="/consultationRequested" component={Consult}/>
 
                     <PrivateRoute exact path="/user/property/update/:token" component={UEditProperty}/>
                     <PrivateRoute exact path="/user/property/updateSuccess" component={UserDashboardUpdateSuccess}/>
@@ -127,9 +141,12 @@ const Routes = () => {
                     <PrivateRoute exact path="/user/property/deleteSuccess" component={UserDashboardDeleteSuccess}/>
                     <PrivateRoute exact path="/user/booking/delete/:id" component={DeleteBooking}/>
                     <PrivateRoute exact path="/user/booking/deleteSuccess" component={UserBookingDeleteSuccess}/>
-                    <PrivateRoute exact path="/user/booking/update/:id" component={EditBooking}/>
                     <PrivateRoute exact path="/user/booking/details/:id" component={ViewBooking}/>
-
+                    <PrivateRoute exact path="/user/consultations" component={MyConsultations}/>
+                    <PrivateRoute exact path="/user/consultation/details/:id" component={ViewConsultations}/>
+                    <PrivateRoute exact path="/user/consultation/delete/:id" component={DeleteConsultation}/>
+                    <PrivateRoute exact path="/user/consultation/deleteSuccess" component={ConsultationDeleteSuccess}/>
+                    
 
                 </Switch>
             </Router>

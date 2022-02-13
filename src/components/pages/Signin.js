@@ -47,7 +47,7 @@ const Signin = () => {
             return <Redirect to='/admin/dashboard'/>
         }
             else {
-                return <Redirect to='/user/profile'/>
+                return <Redirect to='/'/>
             }
         }
     }

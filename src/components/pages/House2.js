@@ -2,17 +2,17 @@ import { useEffect } from "react"
 import { useState } from "react"
 import React from 'react'
 import { Link } from "react-router-dom"
-import AdminSidebar from "../AdminSidebar"
-import { getCategories, getproperties } from "../apiAdmin"
-import { isAuthenticated } from "../../auth"
-import Nav from "../../layout/Nav"
-import Footer from "../../layout/Footer"
-import Checkbox from "../../Checkbox"
-import { prices } from "../../FixedPrice"
-import RadioBox from "../../Radiobox"
-import { getFilteredProperty } from "../apiAdmin"
+import { getCategories, getproperties } from "../admin/apiAdmin"
+import { isAuthenticated } from "../auth"
+import Nav from "../layout/Nav"
+import Footer from "../layout/Footer"
+import Checkbox from "../Checkbox"
+import { prices } from "../FixedPrice"
+import RadioBox from "../Radiobox"
+import { getFilteredProperty } from "../admin/apiAdmin"
 
-const Allproperty = () => {
+
+const House2 = () => {
     const [myFilters, setMyFilters] = useState({
         filters: { category: [], price: [] }
     })
@@ -116,12 +116,7 @@ const Allproperty = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3">
-                        <AdminSidebar />
-                    </div>
-                    <div className="col-md-8">
-                        <h2 className="col-md-8 mt-5 h2">Showing {filteredResults.length} out of {properties.length} properties</h2>
-                        <hr />
-                        <h4>Filter By:</h4>
+                        <h4 className="mt-5"> Filter By:</h4>
                         <div className="d-flex justify-content-evenly">
                             <Checkbox categories={categories} handleFilters={filters => handleFilters(filters, 'category')} />
                         </div>
@@ -131,42 +126,32 @@ const Allproperty = () => {
                             <RadioBox prices={prices} handleFilters={filters => handleFilters(filters, 'property_price')} />
                         </div>
                         <hr />
-                        {filteredResults.length > 0  ?
-                            <>
-                                <div className="text-center">
-                                    <table className="text-center table table-bordered table-secondary">
-                                        <thead>
-                                            <tr>
-                                                <th>S.No.</th>
-                                                <th>Title</th>
-                                                <th>Location</th>
-                                                <th>Price</th>
-                                                <th>Listing Type</th>
-                                                <th>Availablity</th>
-                                                <th>Image</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {filteredResults.map((listing, i) => (
-                                                <tr key={i}>
-                                                    <td>{i + 1}</td>
-                                                    <td>{listing.property_title}</td>
-                                                    <td>{listing.property_location}</td>
-                                                    <td>{listing.property_price}</td>
-                                                    <td>{listing.listing_type}</td>
-                                                    <td>{listing.property_availability ? "YES" : "NO"}</td>
-                                                    <td><img src={`http://localhost:5000/${listing.property_image}`} alt="" className="img-fluid" width="130" /></td>
-                                                    <td>
-                                                        <Link to={`/admin/property/update/${listing._id}`} className="btn btn-primary">Update</Link>
-                                                        <Link to={`/admin/property/delete/${listing._id}`} className="btn btn-danger">Delete</Link>
-                                                    </td>
-                                                </tr>
-                                            ))}
+                    </div>
+                    <div className="col-md-8 mt-5 mx-auto">
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                        {filteredResults.length > 0 ?
+                            <>
+                                {filteredResults.filter((item) => item.category === "61fbe499f0037d1be8e1185e").map((listing, i) => (
+                                    <div class="col" key={i}>
+                                        <Link class="text-decoration-none text-dark" to={`/propertydetails/${listing._id}`}>
+                                            <div class="card">
+
+                                                <img style={{ 'height': '200px' }} src={`http://localhost:5000/${listing.property_image}`} class="card-img-top" alt={``} />
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{listing.property_title}
+                                                    </h4>
+
+                                                    <h6 className='card-title'>{listing.property_price}</h6>
+                                                    <h6 className='card-title'>Availablity:
+                                                        {listing.property_availability ? "YES" : "NO"}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))}
+
+
                                 <div className="text-center">
                                     {size >= 0 &&
                                         size >= limit && (
@@ -185,4 +170,4 @@ const Allproperty = () => {
     )
 }
 
-export default Allproperty
+export default House2

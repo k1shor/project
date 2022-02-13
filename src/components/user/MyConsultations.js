@@ -3,27 +3,27 @@ import { isAuthenticated } from '../auth'
 import Nav from '../layout/Nav'
 import Footer from '../layout/Footer'
 import UserSidebar from '../auth/UserSidebar'
-import { getBookings } from '../admin/apiAdmin'
+import { getConsultations } from '../admin/apiAdmin'
 import { Link } from 'react-router-dom'
 
-const MyBookings = () => {
+const MyConsultations = () => {
     const token = isAuthenticated()
-    const [bookings, setBookings] = useState([])
+    const [consultations, setConsultations] = useState([])
 
-    const loadBookings = () => {
-        getBookings(token).then(data => {
+    const loadConsultaions = () => {
+        getConsultations(token).then(data => {
             if (data.error) {
                 console.log(data.error)
             }
             else {
-                setBookings(data)
+                setConsultations(data)
             }
         })
     }
 
     useEffect(() => {
         console.log(token)
-        loadBookings()
+        loadConsultaions()
     }, [])
 
     return (
@@ -35,7 +35,7 @@ const MyBookings = () => {
                         <UserSidebar />
                     </div>
                     <div className="col-md-8 mt-5">
-                        <div className='h2 text-center text-info'>Bookings</div>
+                        <div className='h2 text-center text-info'>Consultation Requests</div>
                         <hr />
                         <table className="text-center table table-bordered table-secondary align-middle">
                             <thead>
@@ -43,26 +43,26 @@ const MyBookings = () => {
                                     <th>S.No.</th>
                                     <th>Image</th>
                                     <th>Property Title</th>
-                                    <th>Location</th>
-                                    <th>Price</th>
+                                    <th>On/Off Site</th>
+                                    <th>With</th>
                                     <th>Listing Type</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {bookings.filter((item)=>(item.booked_by === token.user.email)).map((listing, i) => (
+                                {consultations.filter((item)=>(item.booked_by === token.user.email)).map((listing, i) => (
                                     <tr key={i}>
                                         <td>{i + 1}</td>
                                         <td><img src={`http://localhost:5000/${listing.property_image}`} alt="" className="img-fluid" width="130" /></td>
 
                                         <td>{listing.property_title}</td>
-                                        <td>{listing.property_location}</td>
-                                        <td>{listing.property_price}</td>
+                                        <td>{listing.consultation_type}</td>
+                                        <td>{listing.consultation_with}</td>
                                         <td>{listing.listing_type}</td>
 
                                         <td>
-                                            <Link to={`/user/booking/details/${listing._id}`} className="btn btn-info">View Booking</Link>
-                                            <Link to={`/user/booking/delete/${listing._id}`} className="btn btn-danger">Cancel Booking</Link>
+                                            <Link to={`/user/consultation/details/${listing._id}`} className="btn btn-info">View</Link>
+                                            <Link to={`/user/consultation/delete/${listing._id}`} className="btn btn-danger">Cancel</Link>
                                         </td>
                                     </tr>
                                 ))}
@@ -80,4 +80,4 @@ const MyBookings = () => {
     )
 }
 
-export default MyBookings
+export default MyConsultations

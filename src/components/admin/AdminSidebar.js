@@ -25,7 +25,7 @@ const AdminSidebar = ({ history }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="#" className="nav-link text-white">
+                        <Link to="/admin/contracts" className="nav-link text-white">
 
                             Contracts
                         </Link>

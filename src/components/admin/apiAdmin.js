@@ -32,6 +32,19 @@ export const getCategories=()=>{
     })
 }
 
+//to get all contracts
+export const getContracts=()=>{
+    return fetch(`${API}/consultationslist`,{
+        method:"GET"
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
 
 
 //to get single category
@@ -73,6 +86,25 @@ export const createbooking=(token,booking)=>{
             Authorization:`Bearer ${token}`
         },
         body:JSON.stringify(booking)
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+//to add consultation
+export const createConsultation=(token,consultation)=>{
+    return fetch(`${API}/postconsultations`,{
+        method:"POST",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        },
+        body:JSON.stringify(consultation)
     })
     .then(response=>{
         return response.json()
@@ -131,6 +163,44 @@ export const getBookings=(token)=>{
     })
 }
 
+//to get all consultations
+export const getConsultations=(token)=>{
+    return fetch(`${API}/consultationslist`,{
+        method:"GET",
+        headers:{
+            Accept:'application/json',
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        }
+    })
+    .then(response=>{
+        return response.json()
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+//to get individual consultation
+export const getConsultation=(user,token)=>{
+    return fetch(`${API}/consultationsdetails/${token}`, {
+        method: "GET",
+        headers:{
+            Authorization:`Bearer ${user}`
+        }
+    })
+        .then(data => {
+            if (data.error) {
+                console.log(data.error)
+            }
+            else {
+                return data
+                // console.log(data)
+            }
+        })
+        .catch(err => console.log(err))
+}
+
 //to get individual bookings
 export const getBooking=(user,token)=>{
     return fetch(`${API}/bookingdetails/${token}`, {
@@ -151,6 +221,26 @@ export const getBooking=(user,token)=>{
         .catch(err => console.log(err))
 }
 
+
+//to get individual contract
+export const getContract=(user,token)=>{
+    return fetch(`${API}/consultationsdetails/${token}`, {
+        method: "GET",
+        headers:{
+            Authorization:`Bearer ${user}`
+        }
+    })
+        .then(data => {
+            if (data.error) {
+                console.log(data.error)
+            }
+            else {
+                return data
+                // console.log(data)
+            }
+        })
+        .catch(err => console.log(err))
+}
 //filter product by price and category
 export const getFilteredProperty=(skip, limit, filters ={})=>{
     let data={limit,skip,filters}

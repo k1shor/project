@@ -122,7 +122,7 @@ const MyListings = () => {
                         <UserSidebar />
                     </div>
                     <div className="col-md-8">
-                        <h2 className="text-center">Showing {filteredResults.length} out of {filteredResults.length} properties</h2>
+                    <div className="h2 text-center text-info mt-5">Showing {filteredResults.length} out of {filteredResults.length} properties</div>
                         <hr />
                         <h4>Filter By:</h4>
                         <div className="d-flex justify-content-evenly">

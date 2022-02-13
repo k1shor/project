@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Nav from '../layout/Nav';
 import Footer from '../layout/Footer';
+import { API } from '../../config';
 import { isAuthenticated } from '../auth';
-import { getBooking } from '../admin/apiAdmin';
+import { getBooking, getConsultation } from '../admin/apiAdmin';
 
-const ViewBooking = ({ match }) => {
+const ViewConsultations = ({ match }) => {
     const { token } = isAuthenticated()
     const [values, setValues] = useState({
         title: '',
-        owner:'',
+        owner: '',
         location: '',
         availability: true,
         price: '',
@@ -17,17 +19,21 @@ const ViewBooking = ({ match }) => {
         image: '',
         categories: [],
         category: '',
+        consultation_type: '',
+        consultation_with: '',
         success: false,
     })
 
-    const { title, owner, location, availability, price, desc, listing_type, image, categories, category } = values
-    
+    const { title, owner, location, availability, price, desc, listing_type, image, categories, category, consultation_type, consultation_with } = values
+    const { error, success } = values
+
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         //find booking
         //find booking
         console.log(match.params.id)
-        getBooking(token, match.params.id)
+        getConsultation(token, match.params.id)
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
@@ -45,6 +51,8 @@ const ViewBooking = ({ match }) => {
                         listing_ype: data.listing_type,
                         image: data.property_image,
                         category: data.category,
+                        consultation_type: data.consultation_type,
+                        consultation_with: data.consultation_with,
                         error: '',
                         success: false,
                     })
@@ -56,11 +64,12 @@ const ViewBooking = ({ match }) => {
     }, [])
 
 
+
     return <>
         <Nav />
         <div className='container w-50 shadow-lg p-5'>
             <main className="form-signin">
-              
+
                 <form>
 
                     <div className="text-primary fw-bold">
@@ -69,14 +78,16 @@ const ViewBooking = ({ match }) => {
                         <img src={`http://localhost:5000/${image}`} alt={title} style={{ 'width': '100%' }} /><br />
 
                         Title:{title}<br />
-                        Owner:{ }<br />
+                        Owner:{owner}<br />
                         Location:{location}<br />
                         Price:Rs.{price}<br />
-                        Availablity:{availability ? "Yes" : "No"}<br />
+                        Consultation with: {consultation_with}<br />
+                        at: {consultation_type}
 
 
-                    </div>             
-                    <a href='/user/mybookings' className="w-100 btn btn-lg btn-primary" >Go Back</a>
+
+                    </div>
+                    <a href='/user/consultations' className="w-100 btn btn-lg btn-primary" type="submit" >Go Back</a>
                 </form>
             </main>
         </div>
@@ -84,4 +95,4 @@ const ViewBooking = ({ match }) => {
     </>;
 };
 
-export default ViewBooking;
+export default ViewConsultations;

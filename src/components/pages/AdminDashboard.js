@@ -12,9 +12,9 @@ const AdminDashboard = () => {
                 <div className="col-md-3 h-100">
                     <AdminSidebar />
                 </div>
-                <div className="col-md-8 mt-5">
-                    <h2>Welcome to Admin Dashboard</h2>
-                    <h4>You can manage Category, Product and orders from here.</h4>
+                <div className="col-md-8 mt-5 h2">
+                    Welcome to Admin Dashboard
+                    
                 </div>
             </div>
             </div>

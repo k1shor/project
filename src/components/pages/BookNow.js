@@ -44,7 +44,7 @@ const BookNow = (props) => {
 
     const clickSubmit = event => {
         event.preventDefault()
-        console.log(user.user.email)
+        // console.log(user.user.email)
         setValues({
             ...values,
             property_title: property.property_title,
@@ -61,7 +61,7 @@ const BookNow = (props) => {
             error: ''
         })
         console.log(values)
-
+console.log(user)
 
         createbooking(user, values)
             .then(data => {
@@ -70,8 +70,6 @@ const BookNow = (props) => {
                 }
                 else {
                     setRedirect(true)
-
-
                 }
             })
     }

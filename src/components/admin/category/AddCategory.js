@@ -54,7 +54,7 @@ const AddCategory = () => {
                     <div className="col-md-6">
                         <main className="form-signin">
                             <form>
-                                <h1 className="h3 mb-3 fw-normal">Add Category Form</h1>
+                                <h1 className="col-md-8 mt-5 h2">Add Category Form</h1>
                                 {showError()}
                                 {showSuccess()}
                                 <div className="form-floating mb-3">

@@ -3,10 +3,10 @@ import Nav from '../layout/Nav';
 import Footer from '../layout/Footer';
 import { API } from '../../config';
 import { isAuthenticated } from '../auth';
-import { getBooking, getCategories } from '../admin/apiAdmin';
+import { getBooking, getCategories, getConsultations } from '../admin/apiAdmin';
 import { Redirect } from 'react-router-dom';
 
-const EditBooking = ({ match }) => {
+const EditConsultation = ({ match }) => {
     const { token } = isAuthenticated()
 
     const [values, setValues] = useState({
@@ -54,7 +54,7 @@ const EditBooking = ({ match }) => {
         })
         //find booking
         console.log(match.params.id)
-        getBooking(token,match.params.id)
+        getConsultation(token,match.params.id)
         .then(res => res.json())
             .then(data => {
                 if (data.error) {
@@ -96,8 +96,8 @@ const EditBooking = ({ match }) => {
         event.preventDefault()
         setValues({ ...values, error: false })
 
-        //update property
-        fetch(`${API}/updateproperty/${match.params.token}`, {
+        //update consultation
+        fetch(`${API}/updateconsultation/${match.params.token}`, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
@@ -210,4 +210,4 @@ const EditBooking = ({ match }) => {
     </>;
 };
 
-export default EditBooking;
+export default EditConsultation;

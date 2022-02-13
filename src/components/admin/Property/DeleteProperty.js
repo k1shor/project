@@ -38,12 +38,7 @@ const DeleteProperty = ({ match }) => {
     const clickSubmit = event => {
         event.preventDefault()
         setValues({ ...values, error: false })
-        // const token = match.params.token
-
-        
-
-
-        //delete category
+       //delete category
         fetch(`${API}/deleteproperty/${match.params.token}`, {
             method: "DELETE",
             headers: {

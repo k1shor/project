@@ -34,6 +34,13 @@ const UserSidebar = ({ history }) => {
                     </li>
 
                     <li>
+                        <Link to="/user/consultations" className="nav-link text-white">
+
+                            My Consultation Requests
+                        </Link>
+                    </li>
+
+                    <li>
                         <Link to="/" className="nav-link text-white">
 
                             Goto Homepage
